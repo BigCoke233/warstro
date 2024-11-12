@@ -12,32 +12,120 @@ export const Warstro = {
 
         // constants of game
         planets: {
-            // fixed index of planets
-            mars: 0,
-            jupiter: 1,
-            venus: 2,
-            mercury: 3,
-            saturn: 4,
-            uranus: 5,
-            neptune: 6,
-            pluto: 7,
-            // initial index of moving planets
-            sun: 0,
-            moon: 4
+            mars: {
+                guard: [this.signs.aries],
+                element: "fire"
+            },
+            jupiter: {
+                guard: [this.signs.sagittarius],
+                element: "fire"
+            },
+            venus: {
+                guard: [this.signs.taurus, this.signs.libra],
+                element: "earth"
+            },
+            mercury: {
+                guard: [this.signs.gemini, this.signs.virgo],
+                element: "air"
+            },
+            saturn: {
+                guard: [this.signs.capricorn],
+                element: "earth"
+            },
+            uranus: {
+                guard: [this.signs.aquarius],
+                element: "air"
+            },
+            neptune: {
+                guard: [this.signs.pisces],
+                element: "water"
+            },
+            pluto: {
+                guard: [this.signs.scorpio],
+                element: "water"
+            },
+            sun: {
+                guard: [this.signs.leo],
+                element: "fire"
+            },
+            moon: {
+                guard: [this.signs.cancer],
+                element: "water"
+            }
         },
         signs: {
-            aries: 0,
-            pisces: 1,
-            libra: 2,
-            taurus: 3,
-            leo: 4,
-            scorpio: 5,
-            gemini: 6,
-            virgo: 7,
-            sagittarius: 8,
-            caner: 9,
-            aquarius: 10,
-            capricorn: 11
+            aries: {
+                guard: this.planets.mars,
+                element: "fire"
+            },
+            pisces: {
+                guard: this.planets.neptune,
+                element: "water"
+            },
+            libra: {
+                guard: this.planets.venus,
+                element: "air"
+            },
+            taurus: {
+                guard: this.planets.venus,
+                element: "earth"
+            },
+            leo: {
+                guard: this.planets.sun,
+                element: "fire"
+            },
+            scorpio: {
+                guard: this.planets.pluto,
+                element: "water"
+            },
+            gemini: {
+                guard: this.planets.mercury,
+                element: "air"
+            },
+            virgo: {
+                guard: this.planets.mercury,
+                element: "earth"
+            },
+            sagittarius: {
+                guard: this.planets.jupiter,
+                element: "fire"
+            },
+            cancer: {
+                guard: this.planets.moon,
+                element: "water"
+            },
+            aquarius: {
+                guard: this.planets.uranus,
+                element: "air"
+            },
+            capricorn: {
+                guard: this.planets.saturn,
+                element: "earth"
+            }
+        },
+        planetPositions: {
+            0: [this.planets.mars, this.planets.sun],
+            1: [this.planets.jupiter],
+            2: [this.planets.venus],
+            3: [this.planets.mercury],
+            4: [this.planets.saturn, this.planets.moon],
+            5: [this.planets.uranus],
+            6: [this.planets.neptune],
+            7: [this.planets.pluto]
+        },
+        signPositions: {
+            0: [this.signs.aries],
+            1: [this.signs.pisces],
+            2: [this.signs.libra],
+            3: [this.signs.taurus],
+            4: [this.signs.leo],
+            5: [this.signs.scorpio],
+            6: [this.signs.gemini],
+            7: [this.signs.virgo],
+            8: [this.signs.sagittarius],
+            9: [this.signs.cancer],
+            10: [this.signs.aquarius],
+            11: [this.signs.capricorn]
         },
         landingTypes: {
             empty: 0,
