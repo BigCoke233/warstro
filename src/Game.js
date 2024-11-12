@@ -13,31 +13,31 @@ export const Warstro = {
         // constants of game
         planets: {
             // fixed index of planets
-            mars: 1,
-            jupiter: 2,
-            venus: 3,
-            mercury: 4,
-            saturn: 5,
-            uranus: 6,
-            neptune: 7,
-            pluto: 8,
+            mars: 0,
+            jupiter: 1,
+            venus: 2,
+            mercury: 3,
+            saturn: 4,
+            uranus: 5,
+            neptune: 6,
+            pluto: 7,
             // initial index of moving planets
-            sun: 1,
-            moon: 5
+            sun: 0,
+            moon: 4
         },
         signs: {
-            aries: 1,
-            pisces: 2,
-            libra: 3,
-            taurus: 4,
-            leo: 5,
-            scorpio: 6,
-            gemini: 7,
-            virgo: 8,
-            sagittarius: 9,
-            caner: 10,
-            aquarius: 11,
-            capricorn: 12
+            aries: 0,
+            pisces: 1,
+            libra: 2,
+            taurus: 3,
+            leo: 4,
+            scorpio: 5,
+            gemini: 6,
+            virgo: 7,
+            sagittarius: 8,
+            caner: 9,
+            aquarius: 10,
+            capricorn: 11
         },
         landingTypes: {
             empty: 0,
