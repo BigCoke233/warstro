@@ -5,11 +5,11 @@ export default function WarstroBoard({ ctx, G, moves }) {
 
     G.cells.forEach(row => {
         let rowContent = []
-        row.forEach(cell => {
+        row.forEach((cell, i) => {
             if (cell!=null) {
                 rowContent.push(
                     <div
-                        key={cell.position}
+                        key={i}
                         className="warstro-cell"
                     >{cell.owner}</div>
                 )
