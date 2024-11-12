@@ -2,8 +2,14 @@ export const Warstro = {
     
     setup: () => ({ 
         // initial an 2D array as game board
-        cells: Array.from({ length: 12 }, () => Array(8).fill(null)),
-        
+        cells: Array.from({ length: 12 }, (_, x) =>
+            Array.from({ length: 8 }, (_, y) => ({
+                owner: null,
+                turn: null,
+                position: { x, y }
+            }))
+        ),
+
         // constants of game
         planets: {
             // fixed index of planets
@@ -44,46 +50,56 @@ export const Warstro = {
     }),
   
     moves: {
-        fillCells: ({ G, playerID }, position, type) => {
+        fillCells: ({ G, ctx, playerID }, x, y, type) => {
             // if type is empty, do nothing
             if (type === G.landingTypes.empty) return;
-
-            const { x, y } = position
-            G.cells[x][y] = playerID // fill the centeal cell anyway
-
-            // fill the surrounding cells based on type
+    
+            // Helper function to set the cell
+            const setCell = (x, y) => {
+                G.cells[x][y] = { owner: playerID, turn: ctx.turn, position: { x, y } };
+            };
+    
+            // Fill the central cell
+            setCell(x, y);
+    
+            // Fill the surrounding cells based on type
             switch (type) {
                 // ascending landing will fill the whole column
                 case G.landingTypes.ascending:
-                    for (let y = 1; y<9; y++) {
-                        G.cells[x][y] = playerID
+                    for (let yIndex = 1; yIndex < 9; yIndex++) {
+                        setCell(x, yIndex);
                     }
-                    break
+                    break;
+    
                 // descending landing will clear the whole column
                 case G.landingTypes.descending:
-                    for (let y = 1; y<9; y++) {
-                        G.cells[x][y] = null
+                    for (let yIndex = 1; yIndex < 9; yIndex++) {
+                        G.cells[x][yIndex] = null;
                     }
-                    break
+                    break;
+    
                 // same element landing will fill a cross shape
                 case G.landingTypes.sameElement:
-                    G.cells[x-1][y] = playerID
-                    G.cells[x+1][y] = playerID
-                    G.cells[x][y-1] = playerID
-                    G.cells[x][y+1] = playerID
-                    break
+                    setCell(x - 1, y);
+                    setCell(x + 1, y);
+                    setCell(x, y - 1);
+                    setCell(x, y + 1);
+                    break;
+    
                 // guarded landing will fill a square shape
                 case G.landingTypes.guarded:
-                    G.cells[x-1][y-1] = playerID
-                    G.cells[x+1][y+1] = playerID
-                    G.cells[x-1][y+1] = playerID
-                    G.cells[x+1][y-1] = playerID
-                    break
+                    setCell(x - 1, y - 1);
+                    setCell(x + 1, y + 1);
+                    setCell(x - 1, y + 1);
+                    setCell(x + 1, y - 1);
+                    break;
+    
                 default:
-                    break
+                    break;
             }
-
-            console.log(G.cells)
+    
+            console.log(G.cells);
         },
     }
+    
 };
