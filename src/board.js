@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function WarstroBoard({ ctx, G, moves }) {
-    let board = []
     let rows = []
 
     G.cells.forEach(row => {
