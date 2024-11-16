@@ -1,3 +1,6 @@
+import { warstroUtils } from "./utils";
+import { warstroData } from "./data";
+
 export const Warstro = {
     
     setup: () => ({ 
@@ -10,184 +13,60 @@ export const Warstro = {
             }))
         ),
 
-        // constants of game
-        planets: {
-            mars: {
-                guard: [this.signs.aries],
-                element: "fire"
-            },
-            jupiter: {
-                guard: [this.signs.sagittarius],
-                element: "fire"
-            },
-            venus: {
-                guard: [this.signs.taurus, this.signs.libra],
-                element: "earth"
-            },
-            mercury: {
-                guard: [this.signs.gemini, this.signs.virgo],
-                element: "air"
-            },
-            saturn: {
-                guard: [this.signs.capricorn],
-                element: "earth"
-            },
-            uranus: {
-                guard: [this.signs.aquarius],
-                element: "air"
-            },
-            neptune: {
-                guard: [this.signs.pisces],
-                element: "water"
-            },
-            pluto: {
-                guard: [this.signs.scorpio],
-                element: "water"
-            },
-            sun: {
-                guard: [this.signs.leo],
-                element: "fire"
-            },
-            moon: {
-                guard: [this.signs.cancer],
-                element: "water"
-            }
-        },
-        signs: {
-            aries: {
-                guard: this.planets.mars,
-                element: "fire"
-            },
-            pisces: {
-                guard: this.planets.neptune,
-                element: "water"
-            },
-            libra: {
-                guard: this.planets.venus,
-                element: "air"
-            },
-            taurus: {
-                guard: this.planets.venus,
-                element: "earth"
-            },
-            leo: {
-                guard: this.planets.sun,
-                element: "fire"
-            },
-            scorpio: {
-                guard: this.planets.pluto,
-                element: "water"
-            },
-            gemini: {
-                guard: this.planets.mercury,
-                element: "air"
-            },
-            virgo: {
-                guard: this.planets.mercury,
-                element: "earth"
-            },
-            sagittarius: {
-                guard: this.planets.jupiter,
-                element: "fire"
-            },
-            cancer: {
-                guard: this.planets.moon,
-                element: "water"
-            },
-            aquarius: {
-                guard: this.planets.uranus,
-                element: "air"
-            },
-            capricorn: {
-                guard: this.planets.saturn,
-                element: "earth"
-            }
-        },
         planetPositions: {
-            0: [this.planets.mars, this.planets.sun],
-            1: [this.planets.jupiter],
-            2: [this.planets.venus],
-            3: [this.planets.mercury],
-            4: [this.planets.saturn, this.planets.moon],
-            5: [this.planets.uranus],
-            6: [this.planets.neptune],
-            7: [this.planets.pluto]
+            0: ["mars", "sun"],
+            1: ["jupiter"],
+            2: ["venus"],
+            3: ["mercury"],
+            4: ["saturn", "moon"],
+            5: ["uranus"],
+            6: ["neptune"],
+            7: ["pluto"]
         },
         signPositions: {
-            0: [this.signs.aries],
-            1: [this.signs.pisces],
-            2: [this.signs.libra],
-            3: [this.signs.taurus],
-            4: [this.signs.leo],
-            5: [this.signs.scorpio],
-            6: [this.signs.gemini],
-            7: [this.signs.virgo],
-            8: [this.signs.sagittarius],
-            9: [this.signs.cancer],
-            10: [this.signs.aquarius],
-            11: [this.signs.capricorn]
-        },
-        landingTypes: {
-            empty: 0,
-            normal: 1,
-            sameElement: 5,
-            guarded: 9,
-            ascending: 8,
-            descending: 9
+            0: ["aries"],
+            1: ["pisces"],
+            2: ["libra"],
+            3: ["taurus"],
+            4: ["leo"],
+            5: ["scorpio"],
+            6: ["gemini"],
+            7: ["virgo"],
+            8: ["sagittarius"],
+            9: ["cancer"],
+            10: ["aquarius"],
+            11: ["capricorn"]
         }
     }),
   
     moves: {
-        fillCells: ({ G, ctx, playerID }, x, y, type) => {
-            // if type is empty, do nothing
-            if (type === G.landingTypes.empty) return;
-    
-            // Helper function to set the cell
-            const setCell = (x, y) => {
-                G.cells[x][y] = { owner: playerID, turn: ctx.turn, position: { x, y } };
-            };
-    
-            // Fill the central cell
-            setCell(x, y);
-    
-            // Fill the surrounding cells based on type
-            switch (type) {
-                // ascending landing will fill the whole column
-                case G.landingTypes.ascending:
-                    for (let yIndex = 1; yIndex < 9; yIndex++) {
-                        setCell(x, yIndex);
-                    }
-                    break;
-    
-                // descending landing will clear the whole column
-                case G.landingTypes.descending:
-                    for (let yIndex = 1; yIndex < 9; yIndex++) {
-                        G.cells[x][yIndex] = null;
-                    }
-                    break;
-    
-                // same element landing will fill a cross shape
-                case G.landingTypes.sameElement:
-                    setCell(x - 1, y);
-                    setCell(x + 1, y);
-                    setCell(x, y - 1);
-                    setCell(x, y + 1);
-                    break;
-    
-                // guarded landing will fill a square shape
-                case G.landingTypes.guarded:
-                    setCell(x - 1, y - 1);
-                    setCell(x + 1, y + 1);
-                    setCell(x - 1, y + 1);
-                    setCell(x + 1, y - 1);
-                    break;
-    
-                default:
-                    break;
-            }
-    
-            console.log(G.cells);
+        rollDice: ({ G, ctx, playerID }) => {
+            // roll the dice
+            const signDice = Math.floor(Math.random() * 12);
+            const planetDice = Math.floor(Math.random() * 12);
+
+            // determine the landing type
+            let landingType = warstroData.landingTypes.normal;
+
+            console.log(warstroData.planetDice[planetDice])
+
+            let isGuarded = warstroData.signs[G.signPositions[signDice]].guard.includes(warstroData.planets[G.planetPositions[planetDice]])
+            let hasSameElement = warstroData.planets[warstroData.planetDice[planetDice]].element === G.signs[G.signPositions[signDice]].element;
+            let isAscending = planetDice === 10;
+            let isDescending = planetDice === 11;
+
+            if (isGuarded) landingType = warstroData.landingTypes.guarded;
+            else if (hasSameElement) landingType = warstroData.landingTypes.sameElement;
+            else if (isAscending) landingType = warstroData.landingTypes.ascending;
+            else if (isDescending) landingType = warstroData.landingTypes.descending;
+
+            // fill the cells based on the landing type
+            warstroUtils.fillCells({ G, ctx, playerID }, G.planetPositions[planetDice], G.signPositions[signDice], landingType);
+
+            console.log(`Sign dice: ${signDice}, Planet dice: ${planetDice}`);
+            
         },
+    
     }
     
 };
