@@ -112,5 +112,12 @@ export const warstroData = {
         guarded: 9,
         ascending: 8,
         descending: 9
+    },
+    emptyCell: (x, y) => {
+        return {
+            owner: null,
+            turn: null,
+            position: { x, y }
+        }
     }
 }
