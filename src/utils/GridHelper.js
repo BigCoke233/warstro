@@ -1,10 +1,15 @@
-const GridHelper = {
-  setGrid: (grid, x, y ,value) => {
-    grid[`${x},${y}`] = value
-  },
-  getGrid: (grid, x, y) => {
-    return grid[`${x},${y}`]
-  },
+class GridHelper {
+  constructor(grid) {
+    this.grid = grid
+  }
+
+  setGrid(x, y ,value) {
+    this.grid[`${x},${y}`] = value
+  }
+
+  getGrid(x, y) {
+    return this.grid[`${x},${y}`]
+  }
 }
 
 export default GridHelper;

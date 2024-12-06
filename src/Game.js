@@ -8,7 +8,10 @@ export const Warstro = {
 
   moves: {
     land: ({ G, playerID }) => {
-      GridHelper.setGrid(G.grid, Dice.getSign(), Dice.getPlanet(), playerID)
+      let gridHelper = new GridHelper(G.grid)
+      let x = Dice.getSign()
+      let y = Dice.getPlanet()
+      gridHelper.setGrid(x, y, playerID)
     },
   },
 };
