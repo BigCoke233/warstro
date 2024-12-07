@@ -11,7 +11,10 @@ export const Warstro = {
       let gridHelper = new GridHelper(G.grid)
       let x = Dice.getSign()
       let y = Dice.getPlanet()
-      gridHelper.setGrid(x, y, playerID)
+
+      gridHelper.setGrid(x, y, {
+        playerID: playerID
+      })
     },
   },
 };
