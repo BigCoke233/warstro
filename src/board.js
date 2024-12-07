@@ -8,22 +8,34 @@ export default function WarstroBoard({ ctx, G, moves }) {
   return (
     <div id="warstro-board">
 
-      <div className="warstro-indicators"
-        id="warstro-planet-indicators">{
-          G.planetSequence.map((item, index) =>
-            <div className="warstro-indicator"
-              key={index}
-            >{item}</div>
-          )
-      }</div>
-      <div className="warstro-indicators"
-        id="warstro-sign-indicators">{
+      <div id="warstro-board-left" className="warstro-indicators">
+        <div id="warstro-daylight-indicators">{
+            G.planetSequence.map((item, index) => {
+              return (
+                <div className="warstro-indicator"
+                  key={index}
+                >{index===G.movingCelestials.sun ? "sun" : (index===G.movingCelestials.moon ? "moon" : "")}</div>
+              )
+            })
+        }</div>
+        <div id="warstro-planet-indicators">{
+            G.planetSequence.map((item, index) =>
+              <div className="warstro-indicator"
+                key={index}
+              >{item}</div>
+            )
+        }</div>
+      </div>
+
+      <div id="warstro-board-top">
+          <div id="warstro-sign-indicators" className="warstro-indicators">{
           G.signSequence.map((item, index) =>
             <div className="warstro-indicator"
               key={index}
             >{item}</div>
           )
-      }</div>
+        }</div>
+      </div>
 
       <div id="warstro-cells">
         {rows.map((row, index) =>

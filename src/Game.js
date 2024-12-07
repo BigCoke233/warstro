@@ -7,7 +7,8 @@ export const Warstro = {
   setup: () => ({
     grid: {},
     planetSequence: initPlanetSeq(),
-    signSequence: initSignSeq()
+    signSequence: initSignSeq(),
+    movingCelestials: { sun: 0, moon: 4 }
   }),
 
   moves: {
@@ -27,5 +28,9 @@ export const Warstro = {
         playerID: playerID
       })
     },
+    doDaylightCycle: ({G}) => {
+      G.movingCelestials.sun = (G.movingCelestials.sun + 1) % 8
+      G.movingCelestials.moon = (G.movingCelestials.moon + 1) % 8
+    }
   },
 };

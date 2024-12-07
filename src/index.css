@@ -27,7 +27,7 @@
     display: grid;
     gap: var(--cell-gap);
     grid-template-rows: var(--cell-size) auto;
-    grid-template-columns: var(--cell-size) auto;
+    grid-template-columns: calc(var(--cell-size) * 2) auto;
 }
 
 #warstro-cells {
@@ -35,13 +35,16 @@
     grid-column: 2;
 }
 
-#warstro-sign-indicators {
+#warstro-board-top {
     grid-row: 1;
     grid-column: 2;
 }
 
-#warstro-planet-indicators {
+#warstro-board-left {
     grid-row: 2;
     grid-column: 1;
+}
+
+#warstro-board-left > div {
     flex-direction: column;
 }
