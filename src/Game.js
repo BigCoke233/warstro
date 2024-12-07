@@ -17,6 +17,17 @@ export const Warstro = {
       let sign = Dice.getSign()
       let planet = Dice.getPlanet()
 
+      // check if landing spot has been taken
+      let spot_taken = () => {
+        let existing_cell = new GridHelper(G.grid).getGrid(sign, planet)
+        return existing_cell !== null && existing_cell.playerID !== playerID
+      }
+      if (spot_taken()) {
+        console.log("challenge flag")
+        // TODO
+        return;
+      }
+
       // determine landing shape
       let shape;
       const constellation = new Constellation(G, sign, planet)

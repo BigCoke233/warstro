@@ -13,7 +13,8 @@ class GridHelper {
   }
 
   getGrid(x, y) {
-    return this.grid[`${x},${y}`]
+    if (`${x},${y}` in this.grid) return this.grid[`${x},${y}`]
+      else return null
   }
 
   fillArea(shape, x, y, value) {
