@@ -1,3 +1,9 @@
+/**
+ * Sequence.js
+ * Helper functions to manage constellation sequence
+ * (the order of them on the board)
+ */
+
 import { signNames, planetNames } from "../data/elements";
 
 function shuffle(array) {

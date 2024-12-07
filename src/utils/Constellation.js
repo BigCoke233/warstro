@@ -1,3 +1,8 @@
+/**
+ * Constellation.js
+ * Helper class to judge sign & planet relationship
+ */
+
 import { signs, planets } from "../data/elements"
 
 class Constellation {

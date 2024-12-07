@@ -1,3 +1,8 @@
+/**
+ * Grid Helper
+ * Helper class to manage grid and cells in game board
+ */
+
 class GridHelper {
   constructor(grid) {
     this.grid = grid

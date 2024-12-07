@@ -1,3 +1,8 @@
+/**
+ * Dice
+ * Helper object and methods to generate random number like a dice
+ */
+
 const roll = max => {
   return Math.floor(Math.random() * max) + 1
 }
