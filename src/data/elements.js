@@ -2,51 +2,51 @@ function createSigns(planets) {
   return {
     aries: {
       element: "fire",
-      guard: planets.mars,
+      ruled_by: planets.mars,
     },
     taurus: {
       element: "earth",
-      guard: planets.venus,
+      ruled_by: planets.venus,
     },
     gemini: {
       element: "air",
-      guard: planets.mercury,
+      ruled_by: planets.mercury,
     },
     cancer: {
       element: "water",
-      guard: planets.moon,
+      ruled_by: planets.moon,
     },
     leo: {
       element: "fire",
-      guard: planets.sun,
+      ruled_by: planets.sun,
     },
     virgo: {
       element: "earth",
-      guard: planets.mercury,
+      ruled_by: planets.mercury,
     },
     libra: {
       element: "air",
-      guard: planets.venus,
+      ruled_by: planets.venus,
     },
     scorpio: {
       element: "water",
-      guard: planets.pluto,
+      ruled_by: planets.pluto,
     },
     sagittarius: {
       element: "fire",
-      guard: planets.jupiter,
+      ruled_by: planets.jupiter,
     },
     capricorn: {
       element: "earth",
-      guard: planets.saturn,
+      ruled_by: planets.saturn,
     },
     aquarius: {
       element: "air",
-      guard: planets.uranus,
+      ruled_by: planets.uranus,
     },
     pisces: {
       element: "water",
-      guard: planets.neptune,
+      ruled_by: planets.neptune,
     },
   };
 }
@@ -55,43 +55,43 @@ function createPlanets(signs) {
   return {
     sun: {
       element: "fire",
-      guarding: [signs.leo],
+      ruling: [signs.leo],
     },
     moon: {
       element: "water",
-      guarding: [signs.cancer],
+      ruling: [signs.cancer],
     },
     mercury: {
       element: "air",
-      guarding: [signs.gemini, signs.virgo],
+      ruling: [signs.gemini, signs.virgo],
     },
     venus: {
       element: "earth",
-      guarding: [signs.taurus, signs.libra],
+      ruling: [signs.taurus, signs.libra],
     },
     mars: {
       element: "fire",
-      guarding: [signs.aries],
+      ruling: [signs.aries],
     },
     jupiter: {
       element: "fire",
-      guarding: [signs.sagittarius],
+      ruling: [signs.sagittarius],
     },
     saturn: {
       element: "earth",
-      guarding: [signs.capricorn],
+      ruling: [signs.capricorn],
     },
     uranus: {
       element: "air",
-      guarding: [signs.aquarius],
+      ruling: [signs.aquarius],
     },
     neptune: {
       element: "water",
-      guarding: [signs.pisces],
+      ruling: [signs.pisces],
     },
     pluto: {
       element: "water",
-      guarding: [signs.scorpio],
+      ruling: [signs.scorpio],
     },
   };
 }
@@ -104,8 +104,8 @@ const planetNames = Object.keys(planets)
 
 signNames.forEach((key) => {
   const sign = signs[key];
-  if (Array.isArray(sign.guard?.guarding)) {
-    sign.guard.guarding.push(sign);
+  if (Array.isArray(sign.ruled_by?.ruling)) {
+    sign.ruled_by.ruling.push(sign);
   }
 });
 
