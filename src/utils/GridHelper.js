@@ -11,6 +11,26 @@ class GridHelper {
     return this.grid[`${x},${y}`]
   }
 
+  fillArea(shape, x, y, value) {
+    this.setGrid(x, y, value)
+    if (shape==='square') {
+      this.setGrid(x-1, y, value)
+      this.setGrid(x, y-1, value)
+      this.setGrid(x-1, y-1, value)
+      this.setGrid(x+1, y, value)
+      this.setGrid(x, y+1, value)
+      this.setGrid(x+1, y+1, value)
+      this.setGrid(x-1, y+1, value)
+      this.setGrid(x+1, y-1, value)
+    }
+    else if (shape==='cross') {
+      this.setGrid(x-1, y, value)
+      this.setGrid(x, y-1, value)
+      this.setGrid(x+1, y, value)
+      this.setGrid(x, y+1, value)
+    }
+  }
+
   convertToArray() {
     // initialize empty cells
     let array = Array.from({ length: 8 }, (_, rowIndex) =>
@@ -29,7 +49,7 @@ class GridHelper {
 
       if (x >= 1 && x <= 12 && y >= 1 && y <= 8) {
         array[y - 1][x - 1].data = this.grid[key];
-      } else console.error(`Invalid key: (${x}, ${y})`);
+      }
     })
 
     return array;
