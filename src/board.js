@@ -8,13 +8,13 @@ export default function WarstroBoard({ ctx, G, moves }) {
   return (
     <div id="warstro-board">
 
-      <div class="warstro-indicators"
+      <div className="warstro-indicators"
         id="warstro-planet-indicators">{
-          G.planetSequence.map(item => <div class="warstro-indicator">{item}</div>)
+          G.planetSequence.map(item => <div className="warstro-indicator">{item}</div>)
       }</div>
-      <div class="warstro-indicators"
+      <div className="warstro-indicators"
         id="warstro-sign-indicators">{
-          G.signSequence.map(item => <div class="warstro-indicator">{item}</div>)
+          G.signSequence.map(item => <div className="warstro-indicator">{item}</div>)
       }</div>
 
       <div id="warstro-cells">
