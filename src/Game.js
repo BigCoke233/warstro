@@ -1,9 +1,12 @@
 import Dice from "./utils/Dice";
 import GridHelper from "./utils/GridHelper";
+import { initPlanetSeq, initSignSeq } from './utils/Sequence'
 
 export const Warstro = {
   setup: () => ({
-    grid: {}
+    grid: {},
+    planetSequence: initPlanetSeq(),
+    signSequence: initSignSeq()
   }),
 
   moves: {

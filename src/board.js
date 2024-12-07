@@ -1,6 +1,5 @@
 import React from "react";
 import GridHelper from "./utils/GridHelper";
-import { signNames, planetNames } from "./data/elements";
 
 export default function WarstroBoard({ ctx, G, moves }) {
   const gridHelper = new GridHelper(G.grid)
@@ -11,16 +10,11 @@ export default function WarstroBoard({ ctx, G, moves }) {
 
       <div class="warstro-indicators"
         id="warstro-planet-indicators">{
-        planetNames.map(planet =>{
-          if (planet!=='sun' && planet!=='moon') return <div class="warstro-indicator">{planet}</div>
-          else return null
-        })
+          G.planetSequence.map(item => <div class="warstro-indicator">{item}</div>)
       }</div>
       <div class="warstro-indicators"
         id="warstro-sign-indicators">{
-        signNames.map(sign =>
-          <div class="warstro-indicator">{sign}</div>
-        )
+          G.signSequence.map(item => <div class="warstro-indicator">{item}</div>)
       }</div>
 
       <div id="warstro-cells">
