@@ -18,7 +18,7 @@ function shuffle(array) {
 
 function initPlanetSeq() {
   let sequence = [...planetNames]
-  sequence.splice(0, 2)
+  sequence.splice(0, 2) // remove sun and moon
   shuffle(sequence)
   return sequence
 }
