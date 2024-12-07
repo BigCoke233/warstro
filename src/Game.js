@@ -1,6 +1,6 @@
 import Dice from "./utils/Dice";
 import GridHelper from "./utils/GridHelper";
-import ElementHelper from "./utils/ElementHelper";
+import Constellation from "./utils/Constellation";
 import { initPlanetSeq, initSignSeq } from './utils/Sequence'
 
 export const Warstro = {
@@ -18,9 +18,9 @@ export const Warstro = {
 
       // determine landing shape
       let shape;
-      const elementHelper = new ElementHelper(G, sign, planet)
-      if (elementHelper.isRuled()) shape="square"
-      else if (elementHelper.hasSameElement()) shape="cross"
+      const constellation = new Constellation(G, sign, planet)
+      if (constellation.isRuled()) shape="square"
+      else if (constellation.hasSameElement()) shape="cross"
 
       // fill landed area
       new GridHelper(G.grid).fillArea(shape, sign, planet, {

@@ -1,6 +1,6 @@
 import { signs, planets } from "../data/elements"
 
-class ElementHelper {
+class Constellation {
   constructor(G, sign, planet) {
     this.planetSequence = G.planetSequence
     this.signSequence = G.signSequence
@@ -17,4 +17,4 @@ class ElementHelper {
   }
 }
 
-export default ElementHelper;
+export default Constellation;
