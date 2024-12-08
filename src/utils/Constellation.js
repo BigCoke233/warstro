@@ -20,15 +20,19 @@ class Constellation {
 
   hasSameElement() {
     let withLocalPlanet = this.planet.element===this.sign.element
-    let withSun = this.sunshone ? this.sign.element===planets.sun.element : false
-    let withMoon = this.moonlit ? this.sign.element===planets.moon.element : false
+    // let withSun = this.sunshone ? this.sign.element===planets.sun.element : false
+    // let withMoon = this.moonlit ? this.sign.element===planets.moon.element : false
+    let withSun = this.sunshone ? this.sign.element==="fire" : false
+    let withMoon = this.moonlit ? this.sign.element==="water" : false
     return withLocalPlanet || withSun || withMoon
   }
 
   isRuled() {
     let withLocalPlaent = this.planet.ruling.includes(this.sign)
-    let withSun = this.sunshone ? planets.sun.ruling.includes(this.sign) : false
-    let withMoon = this.moonlit ? planets.moon.ruling.includes(this.sign) : false
+    // let withSun = this.sunshone ? planets.sun.ruling.includes(this.sign) : false
+    // let withMoon = this.moonlit ? planets.moon.ruling.includes(this.sign) : false
+    let withSun = this.sunshone ? this.sign===signs.leo : false
+    let withMoon = this.moonlit ? this.sign===signs.cancer : false
     return withLocalPlaent || withSun || withMoon
   }
 }
