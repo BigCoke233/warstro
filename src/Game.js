@@ -12,12 +12,12 @@ export const Warstro = {
   }),
 
   moves: {
-    land: ({ G, playerID }) => {
+    descend: ({ G, playerID }) => {
       // roll dice
       let sign = Dice.getSign()
       let planet = Dice.getPlanet()
 
-      // check if landing spot has been taken
+      // check if descended spot has been taken
       let spot_taken = () => {
         let existing_cell = new GridHelper(G.grid).getGrid(sign, planet)
         return existing_cell !== null && existing_cell.playerID !== playerID
@@ -28,17 +28,22 @@ export const Warstro = {
         return;
       }
 
-      // determine landing shape
+      // determine descended area
       let shape;
       const constellation = new Constellation(G, sign, planet)
       if (constellation.isRuled()) shape="square"
       else if (constellation.hasSameElement()) shape="cross"
 
-      // fill landed area
+      // fill area
       new GridHelper(G.grid).fillArea(shape, sign, planet, {
         playerID: playerID
       })
     },
+
+    summon: () => {
+      // pick a card
+    },
+
     doDaylightCycle: ({G}) => {
       G.movingCelestials.sun = (G.movingCelestials.sun + 1) % 8
       G.movingCelestials.moon = (G.movingCelestials.moon + 1) % 8
