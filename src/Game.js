@@ -1,4 +1,3 @@
-import Dice from "./utils/Dice";
 import GridHelper from "./utils/GridHelper";
 import Constellation from "./utils/Constellation";
 import { initPlanetSeq, initSignSeq } from './utils/Sequence'
@@ -12,10 +11,10 @@ export const Warstro = {
   }),
 
   moves: {
-    descend: ({ G, playerID }) => {
+    descend: ({ G, random, playerID }) => {
       // roll dice
-      let sign = Dice.getSign()
-      let planet = Dice.getPlanet()
+      let sign = random.Die(12)
+      let planet = random.Die(8)
 
       // check if descended spot has been taken
       let spot_taken = () => {
