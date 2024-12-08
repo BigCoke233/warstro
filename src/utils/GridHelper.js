@@ -37,6 +37,23 @@ class GridHelper {
     }
   }
 
+  getArea(shape, x, y) {
+    let area = [this.getGrid(x, y)]
+    if (shape==='cross' || shape==='square') {
+      area.push(this.getGrid(x-1, y))
+      area.push(this.getGrid(x, y-1))
+      area.push(this.getGrid(x+1, y))
+      area.push(this.getGrid(x, y+1))
+    }
+    if (shape==='square') {
+      area.push(this.getGrid(x-1,y-1))
+      area.push(this.getGrid(x+1,y+1))
+      area.push(this.getGrid(x-1,y+1))
+      area.push(this.getGrid(x+1,y-1))
+    }
+    return area
+  }
+
   convertToArray() {
     // initialize empty cells
     let array = Array.from({ length: 8 }, (_, rowIndex) =>

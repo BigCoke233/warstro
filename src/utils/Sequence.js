@@ -35,4 +35,9 @@ function initSignSeq() {
   return sequence
 }
 
-export { initSignSeq, initPlanetSeq }
+function doDaylightCycle(celestials) {
+  celestials.sun = (celestials.sun + 1) % 8
+  celestials.moon = (celestials.moon + 1) % 8
+}
+
+export { initSignSeq, initPlanetSeq, doDaylightCycle }

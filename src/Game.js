@@ -1,31 +1,27 @@
 import GridHelper from "./utils/GridHelper";
 import Constellation from "./utils/Constellation";
-import { initPlanetSeq, initSignSeq } from './utils/Sequence'
+import { initPlanetSeq, initSignSeq, doDaylightCycle } from './utils/Sequence'
+import { descendingBlocked } from "./utils/Judge";
 
 export const Warstro = {
   setup: () => ({
     grid: {},
+    // sequence
     planetSequence: initPlanetSeq(),
     signSequence: initSignSeq(),
     movingCelestials: { sun: 0, moon: 4 }
   }),
 
   moves: {
-    descend: ({ G, random, playerID }) => {
+    descend: ({ G, random, playerID , events}) => {
+      const grid = new GridHelper(G.grid)
       // roll dice
-      let sign = random.Die(12)
-      let planet = random.Die(8)
+      const sign = random.Die(12)
+      const planet = random.Die(8)
 
-      // check if descended spot has been taken
-      let spot_taken = () => {
-        let existing_cell = new GridHelper(G.grid).getGrid(sign, planet)
-        return existing_cell !== null && existing_cell.playerID !== playerID
-      }
-      if (spot_taken()) {
-        console.log("challenge flag")
-        // TODO
-        return;
-      }
+      // block descending when spot was taken by player who's
+      // more powerful around that area
+      if (descendingBlocked(sign, planet, playerID, grid)) return;
 
       // determine descended area
       let shape;
@@ -34,18 +30,16 @@ export const Warstro = {
       else if (constellation.hasSameElement()) shape="cross"
 
       // fill area
-      new GridHelper(G.grid).fillArea(shape, sign, planet, {
+      grid.fillArea(shape, sign, planet, {
         playerID: playerID
       })
+
+      doDaylightCycle(G.movingCelestials);
+      events.endTurn()
     },
 
     summon: () => {
       // pick a card
-    },
-
-    doDaylightCycle: ({G}) => {
-      G.movingCelestials.sun = (G.movingCelestials.sun + 1) % 8
-      G.movingCelestials.moon = (G.movingCelestials.moon + 1) % 8
     }
   },
 };
