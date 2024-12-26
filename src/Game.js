@@ -2,7 +2,7 @@ import GridHelper from "./utils/GridHelper";
 import Constellation from "./utils/Constellation";
 import { initPlanetSeq, initSignSeq, doDaylightCycle } from './utils/Sequence'
 import { descendingBlocked } from "./utils/Judge";
-import { initStack } from "./utils/Deck"
+import { initStack, Stack } from "./utils/Deck"
 
 export const Warstro = {
   setup: () => ({
@@ -12,7 +12,7 @@ export const Warstro = {
     signSequence: initSignSeq(),
     movingCelestials: { sun: 0, moon: 4 },
     // cards
-    stack: initStack(),
+    cardStack: initStack(),
   }),
 
   moves: {
@@ -41,8 +41,9 @@ export const Warstro = {
       events.endTurn()
     },
 
-    summon: () => {
-      // pick a card
+    summon: ({ G }) => {
+      const stack = new Stack(G.cardStack)
+      const summonedCard = stack.draw('topdeck')
     }
   },
 };
