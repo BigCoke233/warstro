@@ -45,5 +45,16 @@ export const Warstro = {
 
       events.endTurn()
     },
+
+    playCard: ({ G, playerID }, cardIndex = 0) => {
+      // if requested card does not exist
+      const playedCard = G.playerHands[playerID][cardIndex]
+      if (!playedCard) {
+        console.warn("no such card exists in your hand!")
+        return
+      }
+
+      new Magician(G, playedCard, playerID).play(cardIndex)
+    }
   },
 };

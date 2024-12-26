@@ -41,7 +41,14 @@ export class Magician {
   addStatus() {
     console.log("add status "+this.card.name+" to player "+this.owner)
     this.ownerStatus.push(this.card.name)
-    // once status is set, put back the status card
+    // once status is set, return to stack
+    this.stack.return(this.card)
+  }
+
+  play(cardIndex) {
+    console.log("played card "+this.card.name)
+    // once the card is played, return to stack
+    this.ownerHand.splice(cardIndex)
     this.stack.return(this.card)
   }
 }
