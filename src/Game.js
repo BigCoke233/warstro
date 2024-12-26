@@ -2,10 +2,11 @@ import GridHelper from "./utils/GridHelper";
 import Constellation from "./utils/Constellation";
 import { initPlanetSeq, initSignSeq, doDaylightCycle } from './utils/Sequence'
 import { descendingBlocked, descendingShape } from "./utils/Judge";
-import { initStack, Stack } from "./utils/Deck"
+import { initStack, initHands, initStatus, Stack } from "./utils/Deck"
+import { Magician } from "./utils/Magician";
 
 export const Warstro = {
-  setup: () => ({
+  setup: ({ ctx }) => ({
     grid: {},
     // sequence
     planetSequence: initPlanetSeq(),
@@ -13,6 +14,8 @@ export const Warstro = {
     movingCelestials: { sun: 0, moon: 4 },
     // cards
     cardStack: initStack(),
+    playerHands: initHands(ctx.numPlayers),
+    playerStatus: initStatus(ctx.numPlayers)
   }),
 
   moves: {
@@ -35,9 +38,13 @@ export const Warstro = {
       events.endTurn()
     },
 
-    summon: ({ G }) => {
+    summon: ({ G, playerID, events }) => {
       const stack = new Stack(G.cardStack)
       const summonedCard = stack.draw('topdeck')
+      const magician = new Magician(G, summonedCard, playerID)
+      magician.cast()
+
+      events.endTurn()
     }
   },
 };

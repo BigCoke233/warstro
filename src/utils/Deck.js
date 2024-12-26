@@ -22,18 +22,19 @@ function shuffle(array) {
   return shuffled
 }
 
-function initStack() {
+export function initStack() {
   return shuffle(cards)
 }
 
 /* manage stack with a helper class */
 
-class Stack {
+export class Stack {
   constructor(stack) {
     this.stack = stack;
   }
 
   draw(from) {
+    // draw a card
     let card;
     if (from === 'topdeck') {
       card = this.stack.pop()
@@ -42,10 +43,41 @@ class Stack {
     } else {
       card = this.stack.splice(from, 1)
     }
+
+    if (!card) {
+      console.log("run out of cards")
+      return
+    }
+
     return card
+  }
+
+  return(card, to = 'bottomdeck') {
+    if (to === 'topdeck') {
+      this.stack.push(card)
+    } else {
+      this.stack.unshift(card)
+    }
+    if (to === 'shuffle') this.stack = shuffle(this.stack)
   }
 }
 
+/* manage hand cards */
 
+export function initHands(playerNum) {
+  let hands = {}
+  for (let i = 0; i < playerNum; i++) {
+    hands[i] = []
+  }
+  return hands
+}
 
-export { initStack, Stack }
+/* manage status triggered by cards */
+
+export function initStatus(playerNum) {
+  let status = {}
+  for (let i = 0; i < playerNum; i++) {
+    status[i] = []
+  }
+  return status
+}
