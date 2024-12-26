@@ -13,6 +13,9 @@ class Constellation {
     this.sign = signs[this.signSequence[sign-1]]
     this.planet = planets[this.planetSequence[planet-1]]
 
+    this.x = sign
+    this.y = planet
+
     // if sun or moon exists on this row
     this.sunshone = G.movingCelestials.sun === planet
     this.moonlit = G.movingCelestials.moon === sign

@@ -13,7 +13,8 @@
  * challenge would be considered "blocked"
  */
 
-function descendingBlocked(x, y, playerID, grid) {
+export function descendingBlocked(constellation, playerID, grid) {
+  const { x, y } = constellation;
   const existing_cell = grid.getGrid(x, y)
   const spot_taken = existing_cell !== null && existing_cell.playerID !== playerID
 
@@ -37,4 +38,8 @@ function descendingBlocked(x, y, playerID, grid) {
   }
 }
 
-export { descendingBlocked }
+export function descendingShape(constellation) {
+  if (constellation.isRuled()) return "square"
+  else if (constellation.hasSameElement()) return "cross"
+  return "dot"
+}

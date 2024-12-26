@@ -1,7 +1,7 @@
 import GridHelper from "./utils/GridHelper";
 import Constellation from "./utils/Constellation";
 import { initPlanetSeq, initSignSeq, doDaylightCycle } from './utils/Sequence'
-import { descendingBlocked } from "./utils/Judge";
+import { descendingBlocked, descendingShape } from "./utils/Judge";
 import { initStack, Stack } from "./utils/Deck"
 
 export const Warstro = {
@@ -19,21 +19,15 @@ export const Warstro = {
     descend: ({ G, random, playerID , events}) => {
       const grid = new GridHelper(G.grid)
       // roll dice
-      const sign = random.Die(12)
-      const planet = random.Die(8)
+      const constellation = new Constellation(G, random.Die(12), random.Die(8))
 
       // block descending when spot was taken by player who's
       // more powerful around that area
-      if (descendingBlocked(sign, planet, playerID, grid)) return;
-
-      // determine descended area
-      let shape;
-      const constellation = new Constellation(G, sign, planet)
-      if (constellation.isRuled()) shape="square"
-      else if (constellation.hasSameElement()) shape="cross"
+      if (descendingBlocked(constellation, playerID, grid)) return;
 
       // fill area
-      grid.fillArea(shape, sign, planet, {
+      grid.fillArea(descendingShape(constellation),
+        constellation.x, constellation.y, {
         playerID: playerID
       })
 
