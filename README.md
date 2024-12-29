@@ -1,4 +1,4 @@
-> [!important] This game is still work-in-progress.
+> **Warning:** This game is still work-in-progress.
 
 # Warstro
 
