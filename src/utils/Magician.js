@@ -42,7 +42,7 @@ export class Magician {
     console.log("add status "+statusName+" to player "+this.owner)
     this.ownerStatus.push({
       name: statusName,
-      remaning: statusDuration
+      remaining: statusDuration
     })
   }
 
