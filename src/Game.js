@@ -29,6 +29,8 @@ export const Warstro = {
             return status.remaining>=1
           })
         }
+
+        doDaylightCycle(G.movingCelestials);
       },
     },
 
@@ -48,7 +50,6 @@ export const Warstro = {
         playerID: playerID
       })
 
-      doDaylightCycle(G.movingCelestials);
       events.endTurn()
     },
 
