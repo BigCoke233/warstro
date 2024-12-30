@@ -4,9 +4,11 @@
  */
 
 import { Stack } from "./Deck"
+import GridHelper from "./GridHelper"
 
 export class Magician {
   constructor(G, playerID) {
+    this.G = G
     this.stack = new Stack(G.cardStack)
 
     this.owner = playerID
@@ -20,13 +22,13 @@ export class Magician {
       return
     }
 
-    if (card.type==='held') {
+    if (card.type === 'held') {
       console.log("this is a held card, goes into hand")
       this.ownerHand.push(card)
-    } else if (card.type==='event') {
-      this.doEvent(card.name)
+    } else if (card.type === 'event') {
+      this.doEffect(card.name)
       this.stack.return(card)
-    } else if (card.type==='status') {
+    } else if (card.type === 'status') {
       this.addStatus(card.name, card.duration)
       this.stack.return(card)
     } else {
@@ -34,31 +36,42 @@ export class Magician {
     }
   }
 
-  doEvent(eventName) {
-    console.log("does event "+ eventName)
+  play(card, cardIndex) {
+    console.log("played card " + card.name)
+    this.doEffect(card.name)
+    // once the card is played, return to stack
+    this.ownerHand.splice(cardIndex)
+    this.stack.return(card)
   }
 
   addStatus(statusName, statusDuration) {
-    console.log("add status "+statusName+" to player "+this.owner)
+    console.log("add status " + statusName + " to player " + this.owner)
 
     let existingStatus = this.ownerStatus.find(s => s.name === statusName)
     if (existingStatus) {
       // if status already exists
       // renew the old one
-      existingStatus.remaining = (statusDuration===0) ? 0 : statusDuration+1
+      existingStatus.remaining = (statusDuration === 0) ? 0 : statusDuration + 1
     } else {
       // if not, create new status
       this.ownerStatus.push({
         name: statusName,
-        remaining: (statusDuration===0) ? 0 : statusDuration+1
+        remaining: (statusDuration === 0) ? 0 : statusDuration + 1
       })
     }
   }
 
-  play(card, cardIndex) {
-    console.log("played card "+card.name)
-    // once the card is played, return to stack
-    this.ownerHand.splice(cardIndex)
-    this.stack.return(card)
+  doEffect(effectName) {
+    console.log("does effect "+effectName)
+    switch (effectName) {
+      case "sunFall":
+        const sunRow = this.G.movingCelestials.sun+1
+        new GridHelper(this.G.grid).clearRow(sunRow)
+
+        break
+      default:
+        console.error("invalid effect name")
+    }
   }
+
 }

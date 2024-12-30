@@ -4,8 +4,10 @@
  */
 
 class GridHelper {
-  constructor(grid) {
+  constructor(grid, rows = 8, columns = 12) {
     this.grid = grid
+    this.rows = rows
+    this.columns = columns
   }
 
   setGrid(x, y ,value) {
@@ -15,6 +17,21 @@ class GridHelper {
   getGrid(x, y) {
     if (`${x},${y}` in this.grid) return this.grid[`${x},${y}`]
       else return null
+  }
+
+  removeGrid(x, y) {
+    const key = `${x},${y}`;
+    if (this.grid.hasOwnProperty(key)) {
+      delete this.grid[key];
+      return true;
+    }
+    return false;
+  }
+
+  clearRow(y) {
+    for (let i = 1; i < this.columns; i++) {
+      this.removeGrid(i, y)
+    }
   }
 
   fillArea(shape, x, y, value) {
