@@ -45,12 +45,12 @@ export class Magician {
     if (existingStatus) {
       // if status already exists
       // renew the old one
-      existingStatus.remaining = statusDuration+1
+      existingStatus.remaining = (statusDuration===0) ? 0 : statusDuration+1
     } else {
       // if not, create new status
       this.ownerStatus.push({
         name: statusName,
-        remaining: statusDuration+1
+        remaining: (statusDuration===0) ? 0 : statusDuration+1
       })
     }
   }
