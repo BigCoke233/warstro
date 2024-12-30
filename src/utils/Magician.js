@@ -6,49 +6,50 @@
 import { Stack } from "./Deck"
 
 export class Magician {
-  constructor(G, card, playerID) {
+  constructor(G, playerID) {
     this.stack = new Stack(G.cardStack)
-    this.card = card
 
     this.owner = playerID
     this.ownerHand = G.playerHands[playerID]
     this.ownerStatus = G.playerStatus[playerID]
   }
 
-  cast() {
-    if (!this.card) {
+  deal(card) {
+    if (!card) {
       console.log("how dare you fool me!")
       return
     }
 
-    if (this.card.type==='held') {
+    if (card.type==='held') {
       console.log("this is a held card, goes into hand")
-      this.ownerHand.push(this.card)
-    } else if (this.card.type==='event') {
-      this.doEvent()
-    } else if (this.card.type==='status') {
-      this.addStatus()
+      this.ownerHand.push(card)
+    } else if (card.type==='event') {
+      this.doEvent(card.name)
+      this.stack.return(card)
+    } else if (card.type==='status') {
+      this.addStatus(card.name, card.duration)
+      this.stack.return(card)
     } else {
       console.log("nothing happens!")
     }
   }
 
-  doEvent() {
-    console.log("does event "+this.card.name)
-    this.stack.return(this.card)
+  doEvent(eventName) {
+    console.log("does event "+ eventName)
   }
 
-  addStatus() {
-    console.log("add status "+this.card.name+" to player "+this.owner)
-    this.ownerStatus.push(this.card.name)
-    // once status is set, return to stack
-    this.stack.return(this.card)
+  addStatus(statusName, statusDuration) {
+    console.log("add status "+statusName+" to player "+this.owner)
+    this.ownerStatus.push({
+      name: statusName,
+      remaning: statusDuration
+    })
   }
 
-  play(cardIndex) {
-    console.log("played card "+this.card.name)
+  play(card, cardIndex) {
+    console.log("played card "+card.name)
     // once the card is played, return to stack
     this.ownerHand.splice(cardIndex)
-    this.stack.return(this.card)
+    this.stack.return(card)
   }
 }

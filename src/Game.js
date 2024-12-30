@@ -41,7 +41,7 @@ export const Warstro = {
     summon: ({ G, playerID, events }) => {
       const stack = new Stack(G.cardStack)
       const summonedCard = stack.draw('topdeck')
-      new Magician(G, summonedCard, playerID).cast()
+      new Magician(G, playerID).deal(summonedCard)
 
       events.endTurn()
     },
@@ -54,7 +54,7 @@ export const Warstro = {
         return
       }
 
-      new Magician(G, playedCard, playerID).play(cardIndex)
+      new Magician(G, playerID).play(playedCard, cardIndex)
     }
   },
 };
