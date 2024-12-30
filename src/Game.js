@@ -18,6 +18,20 @@ export const Warstro = {
     playerStatus: initStatus(ctx.numPlayers)
   }),
 
+  turn: {
+      onEnd: ({ G, ctx }) => {
+        // scan all status of each player
+        // reduce status duration
+        for (let i = 0; i < ctx.numPlayers; i++) {
+          G.playerStatus[i] = G.playerStatus[i].filter(status => {
+            if (status.remaining===0) return true
+            status.remaining--
+            return status.remaining>=1
+          })
+        }
+      },
+    },
+
   moves: {
     descend: ({ G, random, playerID , events}) => {
       const grid = new GridHelper(G.grid)

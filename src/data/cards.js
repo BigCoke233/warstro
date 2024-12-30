@@ -10,6 +10,6 @@ export const cards = [
   {
     type: 'status',
     name: 'alchemyWater',
-    duration: 0
+    duration: 10
   }
 ]
