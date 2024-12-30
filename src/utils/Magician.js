@@ -40,10 +40,19 @@ export class Magician {
 
   addStatus(statusName, statusDuration) {
     console.log("add status "+statusName+" to player "+this.owner)
-    this.ownerStatus.push({
-      name: statusName,
-      remaining: statusDuration+1
-    })
+
+    let existingStatus = this.ownerStatus.find(s => s.name === statusName)
+    if (existingStatus) {
+      // if status already exists
+      // renew the old one
+      existingStatus.remaining = statusDuration+1
+    } else {
+      // if not, create new status
+      this.ownerStatus.push({
+        name: statusName,
+        remaining: statusDuration+1
+      })
+    }
   }
 
   play(card, cardIndex) {
