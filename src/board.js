@@ -1,6 +1,6 @@
 import React from "react";
 import GridHelper from "./utils/GridHelper";
-import Icon from "./utils/Icon";
+import Icon from "./ui/Icon";
 
 export default function WarstroBoard({ ctx, G, moves }) {
   const gridHelper = new GridHelper(G.grid)
