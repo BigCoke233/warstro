@@ -23,7 +23,8 @@ function shuffle(array) {
 }
 
 export function initStack() {
-  return shuffle(cards)
+  const cardsWithNoAction = cards.map(({ action, ...cardWithoutAction }) => cardWithoutAction);
+  return shuffle(cardsWithNoAction)
 }
 
 /* manage stack with a helper class */

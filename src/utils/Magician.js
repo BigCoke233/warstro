@@ -3,8 +3,8 @@
  * Receive a summoned card and does effect
  */
 
+import { cards } from "../data/cards"
 import { Stack } from "./Deck"
-import GridHelper from "./GridHelper"
 
 export class Magician {
   constructor(G, playerID) {
@@ -63,15 +63,13 @@ export class Magician {
 
   doEffect(effectName) {
     console.log("does effect "+effectName)
-    switch (effectName) {
-      case "sunFall":
-        const sunRow = this.G.movingCelestials.sun+1
-        new GridHelper(this.G.grid).clearRow(sunRow)
+    const card = cards.find(card => card.name === effectName)
 
-        break
-      default:
-        console.error("invalid effect name")
+    if (!card || !card.action) {
+      console.error("Invalid card name!")
+      return
     }
-  }
 
+    card.action(this.G)
+  }
 }
