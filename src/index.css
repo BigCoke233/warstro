@@ -48,3 +48,14 @@
 #warstro-board-left > div {
     flex-direction: column;
 }
+
+#warstro-action {
+    display: flex;
+    gap: 2rem;
+}
+
+#warstro-action section:not(.active) {
+    opacity: .3;
+    user-select: none;
+    pointer-events: none;
+}
