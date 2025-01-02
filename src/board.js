@@ -1,5 +1,6 @@
 import React from "react";
 import GridHelper from "./utils/GridHelper";
+import Icon from "./utils/Icon";
 
 export default function WarstroBoard({ ctx, G, moves }) {
   const gridHelper = new GridHelper(G.grid)
@@ -15,7 +16,7 @@ export default function WarstroBoard({ ctx, G, moves }) {
                 return (
                   <div className="warstro-indicator"
                     key={index}
-                  >{index===G.movingCelestials.sun ? "sun" : (index===G.movingCelestials.moon ? "moon" : "")}</div>
+                  ><Icon name={index===G.movingCelestials.sun ? "sun" : (index===G.movingCelestials.moon ? "moon" : "")} /></div>
                 )
               })
           }</div>
@@ -23,7 +24,9 @@ export default function WarstroBoard({ ctx, G, moves }) {
               G.planetSequence.map((item, index) =>
                 <div className="warstro-indicator"
                   key={index}
-                >{item}</div>
+                >
+                  <Icon name={item} />
+                </div>
               )
           }</div>
         </div>
@@ -33,7 +36,7 @@ export default function WarstroBoard({ ctx, G, moves }) {
             G.signSequence.map((item, index) =>
               <div className="warstro-indicator"
                 key={index}
-              >{item}</div>
+              ><Icon name={item} /></div>
             )
           }</div>
         </div>
