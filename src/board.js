@@ -62,7 +62,7 @@ export default function WarstroBoard({ ctx, G, moves }) {
       <div id="warstro-action">
         {
           [...Array(ctx.numPlayers)].map((_, i) => (
-            <section class="player-panel" key={i} class={ctx.currentPlayer==i ? "active" : ""}>
+            <section class="player-panel" key={i} className={ctx.currentPlayer==i ? "active" : ""}>
               <h3>Player {i}'s Panel</h3>
               <div class="player-panel-action">
                 <button onClick={() => moves.descend()}>Descend</button>
