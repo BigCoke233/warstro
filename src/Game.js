@@ -1,3 +1,4 @@
+import { INVALID_MOVE } from 'boardgame.io/core';
 import GridHelper from "./utils/GridHelper";
 import Constellation from "./utils/Constellation";
 import { initPlanetSeq, initSignSeq, doDaylightCycle } from './utils/Sequence'
@@ -62,13 +63,8 @@ export const Warstro = {
     },
 
     playCard: ({ G, playerID }, cardIndex = 0) => {
-      // if requested card does not exist
       const playedCard = G.playerHands[playerID][cardIndex]
-      if (!playedCard) {
-        console.warn("no such card exists in your hand!")
-        return
-      }
-
+      if (!playedCard) return INVALID_MOVE
       new Magician(G, playerID).play(playedCard, cardIndex)
     }
   },
