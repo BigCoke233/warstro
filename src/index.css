@@ -23,6 +23,30 @@
     display: flex;
 }
 
+#warstro-daylight-indicators .warstro-indicator {
+    border: none;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.warstro-cell.ownedby-0 {
+    background-color: aquamarine
+}
+
+.warstro-cell.ownedby-1 {
+    background-color: cornflowerblue
+}
+
+.warstro-cell.ownedby-2 {
+    background-color: crimson
+}
+
+.warstro-cell.ownedby-3 {
+    background-color: coral
+}
+
 #warstro-board {
     display: grid;
     gap: var(--cell-gap);

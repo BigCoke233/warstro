@@ -49,9 +49,9 @@ export default function WarstroBoard({ ctx, G, moves }) {
             >
               {row.map(cell =>
                 <div
-                  className="warstro-cell"
+                  className={`warstro-cell ownedby-${cell.data.playerID}`}
                   key={`${cell.x}-${cell.y}`}
-                >{cell.data.playerID}</div>
+                />
               )}
             </div>
           )}
