@@ -12,9 +12,13 @@ body {
   box-sizing: border-box;
 }
 
+.icon {
+  display: inline-block;
+}
 .icon svg {
   width: 1rem;
   height: 1rem;
+  display: inline-block;
 }
 
 #warstro {
@@ -89,9 +93,25 @@ body {
   flex-direction: column;
 }
 #warstro #warstro-action #warstro-action-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(0, 0, 0, 0.05);
   padding: 1rem;
   margin: 1rem 0;
+}
+#warstro #warstro-action #warstro-action-display #warstro-dice .icon {
+  border: 0.3rem solid black;
+  background-color: #fff;
+  padding: 0.5rem;
+  margin: 1rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+#warstro #warstro-action #warstro-action-display #warstro-dice .icon svg {
+  width: 2rem;
+  height: 2rem;
 }
 #warstro #warstro-action #warstro-action-panels {
   display: flex;

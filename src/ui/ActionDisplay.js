@@ -7,8 +7,10 @@ export default function ActionDisplay(props) {
   const planet = G.planetSequence[y-1]
   return (
     <div id="warstro-action-display">
-      <Icon name={sign} />
-      <Icon name={planet} />
+      <div id="warstro-dice">
+        <Icon name={sign} />
+        <Icon name={planet} />
+      </div>
     </div>
   )
 }
