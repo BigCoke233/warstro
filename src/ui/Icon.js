@@ -25,7 +25,6 @@ import { ReactComponent as Uranus } from "../assets/icons/uranus.svg"
 import { ReactComponent as Venus } from "../assets/icons/venus.svg"
 import { ReactComponent as Virgo } from "../assets/icons/virgo.svg"
 
-
 const components = {
   sun: GiSun,
   moon: GiMoon,
