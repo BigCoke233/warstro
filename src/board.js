@@ -6,13 +6,15 @@ import BoardIndicators from "./ui/BoardIndicators";
 
 export default function WarstroBoard({ ctx, G, moves }) {
   return (
-    <div id="warstro-ui">
+    <div id="warstro">
       <div id="warstro-board">
         <BoardIndicators G={G} />
         <BoardCells G={G} />
       </div>
-      <ActionDisplay />
-      <ActionPanel game={{ ctx, G, moves }} />
+      <div id="warstro-action">
+        <ActionDisplay />
+        <ActionPanel game={{ ctx, G, moves }} />
+      </div>
     </div>
   )
 }

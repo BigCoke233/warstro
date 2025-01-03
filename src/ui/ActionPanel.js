@@ -1,7 +1,7 @@
 export default function ActionPanel(props) {
   const { ctx, moves, G } = props.game
   return (
-    <div id="warstro-action">
+    <div id="warstro-action-panels">
       {
         [...Array(ctx.numPlayers)].map((_, i) => (
           <section key={i} className={`player-panel ${Number(ctx.currentPlayer)===i ? "active" : ""}`}>

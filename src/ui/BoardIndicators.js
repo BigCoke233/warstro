@@ -4,8 +4,8 @@ export default function BoardIndicators(props) {
   const G = props.G
   return (
     <>
-      <div id="warstro-board-left" className="warstro-indicators">
-        <div id="warstro-daylight-indicators">{
+      <div id="warstro-board-side">
+        <div id="warstro-daylight-indicators" className="warstro-indicators">{
             G.planetSequence.map((item, index) => {
               return (
                 <div className="warstro-indicator"
@@ -14,7 +14,7 @@ export default function BoardIndicators(props) {
               )
             })
         }</div>
-        <div id="warstro-planet-indicators">{
+        <div id="warstro-planet-indicators" className="warstro-indicators">{
             G.planetSequence.map((item, index) =>
               <div className="warstro-indicator"
                 key={index}
