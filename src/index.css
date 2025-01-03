@@ -4,8 +4,19 @@
     --border-style: 1px solid black;
 }
 
+body {
+    margin: 0
+}
+
 * {
     box-sizing: border-box
+}
+
+#warstro-ui {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .warstro-row {
@@ -82,6 +93,17 @@
     opacity: .3;
     user-select: none;
     pointer-events: none;
+}
+
+.player-panel {
+    border: 1px solid #ccc;
+    padding: 1rem
+}
+
+#warstro-action-display {
+    background-color: rgba(0,0,0,0.05);
+    padding: 1rem;
+    margin: 1rem 0
 }
 
 .icon svg {
