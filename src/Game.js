@@ -48,7 +48,7 @@ export const Warstro = {
 
       // block descending when spot was taken by player who's
       // more powerful around that area
-      if (descendingBlocked(constellation, playerID, grid)) return;
+      if (descendingBlocked(constellation, playerID, grid)) events.endTurn();
 
       // fill area
       grid.fillArea(descendingShape(constellation),
