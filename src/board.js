@@ -12,7 +12,7 @@ export default function WarstroBoard({ ctx, G, moves }) {
         <BoardCells G={G} />
       </div>
       <div id="warstro-action">
-        <ActionDisplay />
+        <ActionDisplay G={G} />
         <ActionPanel game={{ ctx, G, moves }} />
       </div>
     </div>

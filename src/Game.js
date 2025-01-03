@@ -16,7 +16,11 @@ export const Warstro = {
     // cards
     cardStack: initStack(),
     playerHands: initHands(ctx.numPlayers),
-    playerStatus: initStatus(ctx.numPlayers)
+    playerStatus: initStatus(ctx.numPlayers),
+    // last appeared
+    last: {
+      combination: { x: null, y: null }
+    },
   }),
 
   turn: {
@@ -40,6 +44,7 @@ export const Warstro = {
       const grid = new GridHelper(G.grid)
       // roll dice
       const constellation = new Constellation(G, random.Die(12), random.Die(8))
+      G.last.combination = { x: constellation.x, y: constellation.y }
 
       // block descending when spot was taken by player who's
       // more powerful around that area
