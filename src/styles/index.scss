@@ -40,6 +40,9 @@ body {
             border: var(--border-style);
             width: var(--cell-size);
             height: var(--cell-size);
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
         }
 
         /* Central Area */
