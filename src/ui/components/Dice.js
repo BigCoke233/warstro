@@ -13,11 +13,11 @@ export default function Dice(props) {
   const intervalRef = useRef(null);
 
   useEffect(() => {
-    // 每次 index 变化时重置动画
+    // dice animation triggered by every index change
     countRef.current = 0;
 
     if (intervalRef.current) {
-      clearInterval(intervalRef.current); // 清理之前的定时器
+      clearInterval(intervalRef.current); // clear old interval
     }
 
     intervalRef.current = setInterval(() => {
@@ -25,13 +25,12 @@ export default function Dice(props) {
       countRef.current += 1;
 
       if (countRef.current >= 10) {
-        clearInterval(intervalRef.current); // 停止动画
+        clearInterval(intervalRef.current); // stop animation
         intervalRef.current = null;
-        setNumber(index); // 设置最终值
+        setNumber(index); // set final dice number
       }
     }, 100);
 
-    // 清理定时器
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
