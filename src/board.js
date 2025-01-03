@@ -1,92 +1,18 @@
 import React from "react";
-import GridHelper from "./utils/GridHelper";
-import Icon from "./ui/Icon";
+import ActionDisplay from "./ui/ActionDisplay";
+import ActionPanel from "./ui/ActionPanel";
+import BoardCells from "./ui/BoardCells";
+import BoardIndicators from "./ui/BoardIndicators";
 
 export default function WarstroBoard({ ctx, G, moves }) {
-  const gridHelper = new GridHelper(G.grid)
-  let rows = gridHelper.convertToArray()
-
   return (
     <div id="warstro-ui">
       <div id="warstro-board">
-
-        <div id="warstro-board-left" className="warstro-indicators">
-          <div id="warstro-daylight-indicators">{
-              G.planetSequence.map((item, index) => {
-                return (
-                  <div className="warstro-indicator"
-                    key={index}
-                  ><Icon name={index===G.movingCelestials.sun ? "sun" : (index===G.movingCelestials.moon ? "moon" : "")} /></div>
-                )
-              })
-          }</div>
-          <div id="warstro-planet-indicators">{
-              G.planetSequence.map((item, index) =>
-                <div className="warstro-indicator"
-                  key={index}
-                >
-                  <Icon name={item} />
-                </div>
-              )
-          }</div>
-        </div>
-
-        <div id="warstro-board-top">
-            <div id="warstro-sign-indicators" className="warstro-indicators">{
-            G.signSequence.map((item, index) =>
-              <div className="warstro-indicator"
-                key={index}
-              ><Icon name={item} /></div>
-            )
-          }</div>
-        </div>
-
-        <div id="warstro-cells">
-          {rows.map((row, index) =>
-            <div
-              className="warstro-row"
-              key={`row-${index}`}
-            >
-              {row.map(cell =>
-                <div
-                  className={`warstro-cell ownedby-${cell.data.playerID}`}
-                  key={`${cell.x}-${cell.y}`}
-                />
-              )}
-            </div>
-          )}
-        </div>
-
+        <BoardIndicators G={G} />
+        <BoardCells G={G} />
       </div>
-
-      <div id="warstro-action">
-        {
-          [...Array(ctx.numPlayers)].map((_, i) => (
-            <section class="player-panel" key={i} className={Number(ctx.currentPlayer)===i ? "active" : ""}>
-              <h3>Player {i}'s Panel</h3>
-              <div class="player-panel-action">
-                <button onClick={() => moves.descend()}>Descend</button>
-                <button onClick={() => moves.summon()}>Summon</button>
-              </div>
-              <div class="player-panel-status">
-                <p>
-                  {G.playerStatus[i].map(status =>
-                    <span>{status.name} ({status.remaining})</span>
-                  )}
-                </p>
-              </div>
-              <div class="player-panel-hands">
-                {G.playerHands[i].map((card, i) =>
-                  <div>
-                    <h4>{card.name}</h4>
-                    <p><button onClick={() => moves.playCard(i)}>play</button></p>
-                  </div>
-                )}
-              </div>
-            </section>
-          ))
-        }
-      </div>
+      <ActionDisplay />
+      <ActionPanel game={{ ctx, G, moves }} />
     </div>
   )
 }
