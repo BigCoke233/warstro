@@ -17,7 +17,7 @@ export default function ActionPanel(props) {
                 )}
               </p>
             </div>
-            <div class="player-panel-hands">
+            <div className="player-panel-hands">
               {G.playerHands[i].map((card, i) =>
                 <div>
                   <h4>{card.name}</h4>

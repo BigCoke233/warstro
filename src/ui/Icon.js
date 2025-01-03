@@ -56,5 +56,5 @@ const components = {
 export default function Icon(props) {
   if (!components[props.name]) return null;
   const SpecificIcon = components[props.name]
-  return <span class="icon"><SpecificIcon /></span>;
+  return <span className="icon"><SpecificIcon /></span>;
 }
