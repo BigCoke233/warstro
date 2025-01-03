@@ -14,10 +14,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "npm-run-all --parallel watch:sass react-start",
+    "react-start": "react-scripts start",
+    "build": "npm run build:sass && react-scripts build",
+    "watch:sass": "sass --watch src/styles:src/styles",
+    "build:sass": "sass src/styles:src/styles"
   },
   "eslintConfig": {
     "extends": [

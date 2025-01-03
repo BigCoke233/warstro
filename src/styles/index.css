@@ -1,0 +1,114 @@
+:root {
+  --cell-size: 3rem;
+  --cell-gap: 1rem;
+  --border-style: 1px solid black;
+}
+
+body {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#warstro-ui {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.warstro-row {
+  display: flex;
+}
+
+.warstro-cell,
+.warstro-indicator {
+  border: var(--border-style);
+  width: var(--cell-size);
+  height: var(--cell-size);
+}
+
+.warstro-indicators {
+  display: flex;
+}
+
+#warstro-daylight-indicators .warstro-indicator {
+  border: none;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.warstro-cell.ownedby-0 {
+  background-color: aquamarine;
+}
+
+.warstro-cell.ownedby-1 {
+  background-color: cornflowerblue;
+}
+
+.warstro-cell.ownedby-2 {
+  background-color: crimson;
+}
+
+.warstro-cell.ownedby-3 {
+  background-color: coral;
+}
+
+#warstro-board {
+  display: grid;
+  gap: var(--cell-gap);
+  grid-template-rows: var(--cell-size) auto;
+  grid-template-columns: calc(var(--cell-size) * 2) auto;
+}
+
+#warstro-cells {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+#warstro-board-top {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+#warstro-board-left {
+  grid-row: 2;
+  grid-column: 1;
+}
+
+#warstro-board-left > div {
+  flex-direction: column;
+}
+
+#warstro-action {
+  display: flex;
+  gap: 2rem;
+}
+
+#warstro-action section:not(.active) {
+  opacity: 0.3;
+  user-select: none;
+  pointer-events: none;
+}
+
+.player-panel {
+  border: 1px solid #ccc;
+  padding: 1rem;
+}
+
+#warstro-action-display {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.icon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/*# sourceMappingURL=index.css.map */
