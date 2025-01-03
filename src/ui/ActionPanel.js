@@ -4,13 +4,13 @@ export default function ActionPanel(props) {
     <div id="warstro-action">
       {
         [...Array(ctx.numPlayers)].map((_, i) => (
-          <section class="player-panel" key={i} className={Number(ctx.currentPlayer)===i ? "active" : ""}>
+          <section key={i} className={`player-panel ${Number(ctx.currentPlayer)===i ? "active" : ""}`}>
             <h3>Player {i}'s Panel</h3>
-            <div class="player-panel-action">
+            <div className="player-panel-action">
               <button onClick={() => moves.descend()}>Descend</button>
               <button onClick={() => moves.summon()}>Summon</button>
             </div>
-            <div class="player-panel-status">
+            <div className="player-panel-status">
               <p>
                 {G.playerStatus[i].map(status =>
                   <span>{status.name} ({status.remaining})</span>
