@@ -19,7 +19,8 @@ export const Warstro = {
     playerStatus: initStatus(ctx.numPlayers),
     // last appeared
     last: {
-      combination: { x: null, y: null }
+      combination: { x: null, y: null },
+      picked: { card: {}, by: null }
     },
   }),
 

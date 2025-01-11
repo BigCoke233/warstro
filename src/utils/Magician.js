@@ -34,6 +34,9 @@ export class Magician {
     } else {
       console.log("nothing happens!")
     }
+
+    this.G.last.picked.card = card;
+    this.G.last.picked.by = this.owner
   }
 
   play(card, cardIndex) {
