@@ -1,8 +1,21 @@
 import GridHelper from "../utils/GridHelper"
+import { useEffect, useState } from "react";
 
 export default function BoardCells(props) {
-  const cells = new GridHelper(props.G.grid).convertToArray()
-  const aim = props.G.last.combination
+  const [displayedGrid, setDisplayedGrid] = useState(props.G.grid); // 用于存储延迟显示的网格
+  const [displayedAim, setDisplayedAim] = useState(props.G.last.combination)
+  const cells = new GridHelper(displayedGrid).convertToArray();
+
+  useEffect(() => {
+    const delay = 1000; // 延迟时间（毫秒）
+    const timeout = setTimeout(() => {
+      setDisplayedGrid(props.G.grid); // 延迟更新以匹配掷骰动画
+      setDisplayedAim(props.G.last.combination)
+    }, delay);
+
+    return () => clearTimeout(timeout); // 清理超时以避免内存泄漏
+  }, [props.G.grid, props.G.last.combination]); // 当 props.G.grid 更新时触发
+
   return (
     <div id="warstro-cells">
       {cells.map((row, index) =>
@@ -14,7 +27,7 @@ export default function BoardCells(props) {
             <div
               className={`warstro-cell ownedby-${cell.data.playerID}`}
               key={`${cell.x}-${cell.y}`}
-            >{(aim.x===cell.x && aim.y===cell.y) ? "!" : ""}</div>
+            >{(displayedAim.x===cell.x && displayedAim.y===cell.y) ? "!" : ""}</div>
           )}
         </div>
       )}
