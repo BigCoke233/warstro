@@ -7,11 +7,15 @@ export default function BoardCells(props) {
   const cells = new GridHelper(displayedGrid).convertToArray();
 
   useEffect(() => {
-    const delay = 1000; // 延迟时间（毫秒）
+    const elements = document.getElementsByClassName("entering")
+    Array.from(elements).forEach(element => {
+        element.classList.remove("entering");
+    });
+
     const timeout = setTimeout(() => {
       setDisplayedGrid(props.G.grid); // 延迟更新以匹配掷骰动画
       setDisplayedAim(props.G.last.combination)
-    }, delay);
+    }, 1000);
 
     return () => clearTimeout(timeout); // 清理超时以避免内存泄漏
   }, [props.G.grid, props.G.last.combination]); // 当 props.G.grid 更新时触发
