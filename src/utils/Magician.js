@@ -29,7 +29,6 @@ export class Magician {
     } else if (card.type === 'event') {
       this.doEffect(card.name)
       this.stack.return(card)
-      toast(`player ${this.owner} triggered an event, ${card.name}!`)
     } else if (card.type === 'status') {
       this.addStatus(card.name, card.duration)
       this.stack.return(card)
@@ -72,6 +71,7 @@ export class Magician {
   doEffect(effectName) {
     console.log("does effect "+effectName)
     const card = cards.find(card => card.name === effectName)
+    toast(`${card.name}!`)
 
     if (!card || !card.action) {
       console.error("Invalid card name!")
