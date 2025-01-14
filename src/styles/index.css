@@ -65,6 +65,19 @@ body {
 #warstro #warstro-board #warstro-cells .warstro-cell.ownedby-3 {
   background-color: coral;
 }
+#warstro #warstro-board #warstro-cells .warstro-cell.entering {
+  animation: entering 0.5s ease-in forwards;
+}
+@keyframes entering {
+  from {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 #warstro #warstro-board #warstro-board-top,
 #warstro #warstro-board #warstro-board-side {
   display: flex;

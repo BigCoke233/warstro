@@ -25,7 +25,7 @@ export default function BoardCells(props) {
         >
           {row.map(cell =>
             <div
-              className={`warstro-cell ownedby-${cell.data.playerID}`}
+              className={`warstro-cell ${cell.data.playerID ? `ownedby-${cell.data.playerID} entering` : ''}`}
               key={`${cell.x}-${cell.y}`}
             >{(displayedAim.x===cell.x && displayedAim.y===cell.y) ? "!" : ""}</div>
           )}
