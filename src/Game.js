@@ -6,6 +6,7 @@ import { descendingBlocked, descendingShape } from "./utils/Judge";
 import { initStack, initHands, initStatus, Stack } from "./utils/Deck"
 import { Magician } from "./utils/Magician";
 import { toast } from 'react-toastify';
+import i18n from './i18n/i18n';
 
 export const Warstro = {
   setup: ({ ctx }) => ({
@@ -59,7 +60,10 @@ export const Warstro = {
       })
 
       setTimeout(() => {
-        toast(`${constellation.planet.name} in ${constellation.sign.name}`)
+        toast(i18n.t("prompt.constellationStatus", {
+          sign: i18n.t("sign."+constellation.sign.name),
+          planet: i18n.t("planet."+constellation.planet.name)
+        }))
       }, 1000)
 
       events.endTurn()
