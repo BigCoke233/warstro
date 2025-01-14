@@ -5,6 +5,7 @@ import { initPlanetSeq, initSignSeq, doDaylightCycle } from './utils/Sequence'
 import { descendingBlocked, descendingShape } from "./utils/Judge";
 import { initStack, initHands, initStatus, Stack } from "./utils/Deck"
 import { Magician } from "./utils/Magician";
+import { toast } from 'react-toastify';
 
 export const Warstro = {
   setup: ({ ctx }) => ({
@@ -56,6 +57,10 @@ export const Warstro = {
         constellation.x, constellation.y, {
         playerID: playerID
       })
+
+      setTimeout(() => {
+        toast(`${constellation.planet.name} in ${constellation.sign.name}`)
+      }, 1000)
 
       events.endTurn()
     },

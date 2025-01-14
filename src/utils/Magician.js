@@ -5,6 +5,7 @@
 
 import { cards } from "../data/cards"
 import { Stack } from "./Deck"
+import { toast } from "react-toastify"
 
 export class Magician {
   constructor(G, playerID) {
@@ -23,14 +24,16 @@ export class Magician {
     }
 
     if (card.type === 'held') {
-      console.log("this is a held card, goes into hand")
+      toast(`player ${this.owner} got a card, ${card.name}!`)
       this.ownerHand.push(card)
     } else if (card.type === 'event') {
       this.doEffect(card.name)
       this.stack.return(card)
+      toast(`player ${this.owner} triggered an event, ${card.name}!`)
     } else if (card.type === 'status') {
       this.addStatus(card.name, card.duration)
       this.stack.return(card)
+      toast(`player ${this.owner} got a status, ${card.name}!`)
     } else {
       console.log("nothing happens!")
     }
@@ -45,6 +48,8 @@ export class Magician {
     // once the card is played, return to stack
     this.ownerHand.splice(cardIndex)
     this.stack.return(card)
+
+    toast(`player ${this.owner} played card ${card.name}!`)
   }
 
   addStatus(statusName, statusDuration) {
